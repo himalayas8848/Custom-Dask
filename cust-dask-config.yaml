@@ -4,10 +4,10 @@ worker:
   replicas: 3
   resources:
     limits:
-      cpu: 2
+      cpu: 1
       memory: 3.75G
     requests:
-      cpu: 2
+      cpu: 1
       memory: 3.75G
   env:
     - name: EXTRA_CONDA_PACKAGES
