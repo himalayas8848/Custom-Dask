@@ -32,12 +32,12 @@ worker:
   aptPackages: >-
   default_resources:  # overwritten by resource limits if they exist
     cpu: 1
-    memory: "4GiB"
+    memory: "3.75GiB"
   env:
-    # - name: EXTRA_CONDA_PACKAGES
-    #   value: numba xarray -c conda-forge
-    # - name: EXTRA_PIP_PACKAGES
-    #   value: s3fs dask-ml --upgrade
+     - name: EXTRA_CONDA_PACKAGES
+       value: numba xarray -c conda-forge
+     - name: EXTRA_PIP_PACKAGES
+       value: gcsfs s3fs dask-ml --upgrade
   resources: {}
     # limits:
     #   cpu: 1
@@ -58,10 +58,10 @@ jupyter:
   servicePort: 80
   password: 'sha1:aae8550c0a44:9507d45e087d5ee481a5ce9f4f16f37a0867318c'  # 'dask'
   env:
-    # - name: EXTRA_CONDA_PACKAGES
-    #   value: numba xarray -c conda-forge
-    # - name: EXTRA_PIP_PACKAGES
-    #   value: s3fs dask-ml --upgrade
+     - name: EXTRA_CONDA_PACKAGES
+       value: numba xarray -c conda-forge
+     - name: EXTRA_PIP_PACKAGES
+       value: gcsfs s3fs dask-ml --upgrade
   resources: {}
     # limits:
     #   cpu: 2
