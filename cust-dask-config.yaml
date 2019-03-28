@@ -1,14 +1,6 @@
 # cust-dask-config.yaml
 
 worker:
-  replicas: 3
-  resources:
-    limits:
-      cpu: 1
-      memory: 3.75G
-    requests:
-      cpu: 1
-      memory: 3.75G
   env:
     - name: EXTRA_CONDA_PACKAGES
       value: numba xarray -c conda-forge
@@ -17,7 +9,6 @@ worker:
 
 # We want to keep the same packages on the worker and jupyter environments
 jupyter:
-  enabled: true
   env:
     - name: EXTRA_CONDA_PACKAGES
       value: numba xarray matplotlib -c conda-forge
