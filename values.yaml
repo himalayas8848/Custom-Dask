@@ -37,7 +37,7 @@ worker:
      - name: EXTRA_CONDA_PACKAGES
        value: numba xarray -c conda-forge
      - name: EXTRA_PIP_PACKAGES
-       value: gcsfs s3fs dask-ml --upgrade
+       value: fastparquet gcsfs s3fs dask-ml --upgrade
   resources: {}
     # limits:
     #   cpu: 1
@@ -61,7 +61,7 @@ jupyter:
      - name: EXTRA_CONDA_PACKAGES
        value: numba xarray -c conda-forge
      - name: EXTRA_PIP_PACKAGES
-       value: gcsfs s3fs dask-ml --upgrade
+       value: fastparquet gcsfs s3fs dask-ml --upgrade
   resources: {}
     # limits:
     #   cpu: 2
