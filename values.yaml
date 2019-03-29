@@ -31,8 +31,8 @@ worker:
   replicas: 3
   aptPackages: >-
   default_resources:  # overwritten by resource limits if they exist
-    cpu: 1
-    memory: "3.75GiB"
+    #cpu: 1
+    #memory: "3.75GiB"
   env:
      - name: EXTRA_CONDA_PACKAGES
        value: numba xarray -c conda-forge
