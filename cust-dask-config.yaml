@@ -3,14 +3,14 @@
 worker:
   env:
     - name: EXTRA_CONDA_PACKAGES
-      value: fastparquet numba xarray -c conda-forge
+      value: pandas fastparquet numba xarray -c conda-forge
     - name: EXTRA_PIP_PACKAGES
-      value: gcsfs dask-ml --upgrade
+      value: cython six gcsfs dask-ml --upgrade
 
 # We want to keep the same packages on the worker and jupyter environments
 jupyter:
   env:
     - name: EXTRA_CONDA_PACKAGES
-      value: fastparquet numba xarray matplotlib -c conda-forge
+      value: pandas fastparquet numba xarray matplotlib -c conda-forge
     - name: EXTRA_PIP_PACKAGES
-      value: gcsfs dask-ml --upgrade
+      value: cython six gcsfs dask-ml --upgrade
