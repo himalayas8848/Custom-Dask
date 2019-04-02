@@ -11,12 +11,12 @@ scheduler:
   serviceType: "LoadBalancer"
   servicePort: 8786
   resources: {}
-    # limits:
-    #   cpu: 1.8
-    #   memory: 6G
-    # requests:
-    #   cpu: 1.8
-    #   memory: 6G
+     limits:
+       cpu: 4
+       memory: 18G
+     requests:
+       cpu: 2
+       memory: 6G
 
 webUI:
   name: webui
@@ -39,12 +39,12 @@ worker:
      - name: EXTRA_PIP_PACKAGES
        value: cython six pyarrow gcsfs s3fs dask-ml dask-xgboost --upgrade
   resources: {}
-    # limits:
-    #   cpu: 1
-    #   memory: 3G
-    # requests:
-    #   cpu: 1
-    #   memory: 3G
+     limits:
+       cpu: 4
+       memory: 8G
+     requests:
+       cpu: 2
+       memory: 8G
 
 jupyter:
   name: jupyter
