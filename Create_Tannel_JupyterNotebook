@@ -1,0 +1,45 @@
+Create GCP project. Customize site you want.
+Create a new merchine first.
+If want to share the key:
+ssh-keygen -t rsa -f ~/.ssh/web8341-gcp-ssh-key -C web8341
+It will generate two files:
+web8341-gcp-ssh-key and web8341-gcp-ssh-key.pub
+from server setting download web8341-gcp-ssh-key file and save it as web8341-gcp-ssh-key - all file type in your compute.
+Using PuttyGen to generate a private key.
+
+cat .ssh/tanya-gcp-ssh-key.pub to print the key in screen.
+Copy the key and paste it into VM ssh key block.
+Then download the private key file in merchine setting button.
+Convert Putty private key using PuttyGen and save as private key.
+
+Putty host name:
+user_name@gcp_externalIP port 22
+Then expend SSH - AUTH open private key file, then open and yes.
+
+Winscp
+
+From Dataproc create a cluster.
+Initiate Jupyter:
+gsuil ls gs://dataproc-initialization-actions/
+gs://dataproc-initialization-actions/jupyter/jupyter.sh
+
+Google SDK and API can automatic these process.
+
+Compute Engine create an instance
+Select Allow HTTP traffic and HTTPS.
+Change Preemptibilty, but at less 24 hours.
+Then Create.
+
+ssh log in merchine.
+Check using some codes:
+cat /etc/os-release
+hadoop fs -ls /
+spark-shell
+
+Using web access setting button.
+1. Open port for Jupyter access;
+2. SSH Tannel:
+a. Install Google Cloud SDK;
+b. gcloud compute ssh --zone=us-east4-c --ssh-flag="-D" --ssh-flag="10000" --ssh-flag="-N" "spark-6-m"
+c. Open a new terminal session for socks proxy: "c:/Program Files (x86)\Google\Chrome\Application\Chrome.exe" "http://spark-6-m:8088" --proxy-server="socks5://localhost:10000" --host-resolver-rules="MAP * 0.0.0.0, EXCLUDE localhost" --user-data-dir="%USERPROFILE%\chrome-proxy-profile"
+
