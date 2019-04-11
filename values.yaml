@@ -12,8 +12,8 @@ scheduler:
   servicePort: 8786
   resources: {}
      limits:
-       cpu: 1.9
-       memory: 5.5G
+       cpu: 2
+       memory: 7.5G
      requests:
        cpu: 2
        memory: 7.5G
@@ -40,8 +40,8 @@ worker:
        value: cython six pyarrow gcsfs s3fs dask-ml dask-xgboost --upgrade
   resources: {}
      limits:
-       cpu: 1.9
-       memory: 5.5G
+       cpu: 2
+       memory: 7.5G
      requests:
        cpu: 2
        memory: 7.5G
