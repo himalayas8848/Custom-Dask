@@ -13,10 +13,10 @@ scheduler:
   resources: {}
      limits:
        cpu: 2
-       memory: 8G
+       memory: 7.5G
      requests:
        cpu: 2
-       memory: 8G
+       memory: 7.5G
 
 webUI:
   name: webui
@@ -44,7 +44,7 @@ worker:
        memory: 80G
      requests:
        cpu: 2
-       memory: 8G
+       memory: 7.5G
 
 jupyter:
   name: jupyter
