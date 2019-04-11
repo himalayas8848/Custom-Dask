@@ -40,8 +40,8 @@ worker:
        value: cython six pyarrow gcsfs s3fs dask-ml dask-xgboost --upgrade
   resources: {}
      limits:
-       cpu: 10
-       memory: 80G
+       cpu: 20
+       memory: 75G
      requests:
        cpu: 4
        memory: 15G
