@@ -12,8 +12,8 @@ scheduler:
   servicePort: 8786
   resources: {}
      limits:
-       cpu: 4
-       memory: 16G
+       cpu: 2
+       memory: 8G
      requests:
        cpu: 2
        memory: 8G
