@@ -43,8 +43,8 @@ worker:
        cpu: 10
        memory: 80G
      requests:
-       cpu: 2
-       memory: 7.5G
+       cpu: 4
+       memory: 15G
 
 jupyter:
   name: jupyter
