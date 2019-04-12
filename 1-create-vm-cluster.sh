@@ -1,3 +1,5 @@
+#! /bin/bash
+
 ## explicitly specify the number of nodes and their types then we would use the following command:
 #gcloud config set project-jupyter-hub
 
