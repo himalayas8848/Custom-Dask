@@ -1,6 +1,6 @@
 # Move file from local to hdfs
 # How to access Hadoop supported file system? Using URI: schema://authority/path
 # Local file - file://
-# HDFS - hdfs://namenode  exmaple below
+# HDFS - hdfs://namenode:8020/path  exmaple below
 
 hdfs dfs -moveFromLocal file:///home/web8341/user.txt hdfs://spark-3-m/user/web8341/
