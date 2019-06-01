@@ -3,7 +3,7 @@
 ### Export cluster into an YAML file
 #gcloud beta dataproc clusters export my-existing-cluster --destination cluster.yaml
 ### Using YAML file creating a cluster
-#gcloud beta dataproc clusters import my-new-cluster --source cluster.yaml
+#gcloud beta dataproc clusters import my-new-cluster --source cluster.yaml --region us-east1
 #gcloud container clusters delete [CLUSTER_NAME]
 
 config:
