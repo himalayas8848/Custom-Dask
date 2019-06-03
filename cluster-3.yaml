@@ -5,6 +5,9 @@
 ### Using YAML file creating a cluster
 #   gcloud alpha dataproc clusters import spark-3 --source cluster-3.yaml --region us-east1
 #   gcloud container clusters delete [CLUSTER_NAME]
+#   git reset --hard HEAD
+#   git pull
+
 
 config:
   configBucket: jhub-storage
