@@ -1,0 +1,113 @@
+import re
+import os
+
+# source_root_path = r"C:\Users\dwang\OneDrive - Lowe's Companies Inc\DAVE\py\Toolbox"
+source_root_path = r"\\fnp0912mp01\data1\Flyer-Docs\Toolbox"
+destination_root_path = r"C:\Users\dwang\OneDrive - Lowe's Companies Inc\DAVE\py\Toolbox"
+working_yr = 2018
+
+def construct_filenames(full_path,working_yr,working_wk):
+    # Input file names
+    
+    src = full_path
+
+    # Output file names
+    #wk_str = re.findall("\d",full_path.split("\\")[-2])
+    #wk = "0"+wk_str[0].strip()[-2:]
+    wk_num = int(working_wk.strip()[-2:])
+    wk = ("0"+str(wk_num))[-2:]
+
+    fileName = full_path.split("\\")[-1]
+    yr = str(working_yr)
+#    yr = fileName.split(".")[0][-4:]
+
+    report_name_map = {"BMR":"BM", "BRM":"BM","CAN":"CN","HDE":"HQ","HOM":"HQ","PAT":"PM"}
+    report_name_short = report_name_map[fileName[:3].upper()]
+
+    jpg_file_name_pattern = report_name_short+"_"+yr+"_WK"+wk+"_PG"
+    jpg_folder = destination_root_path+r"\WRKG_FILS\GPJS"+"\\"+report_name_short+"\\"+yr+"\\"+jpg_file_name_pattern
+    return (src, jpg_folder)
+
+def split_pdf_jpg(src,jpg_file_name_pattern):
+    import sys
+    
+    #pdf = file(sys.argv[1], "rb").read()
+    pdf = open(src, "rb").read()
+
+    startmark = "\xff\xd8"
+    startfix = 0
+    endmark = "\xff\xd9"
+    endfix = 2
+    i = 0
+
+    njpg = 0
+    while True:
+        istream = pdf.find("stream", i)
+        if istream < 0:
+            break
+        istart = pdf.find(startmark, istream, istream+20)
+        if istart < 0:
+            i = istream+20
+            continue
+        iend = pdf.find("endstream", istart)
+        if iend < 0:
+            raise Exception("Didn't find end of stream!")
+        iend = pdf.find(endmark, iend-20)
+        if iend < 0:
+            raise Exception("Didn't find end of JPG!")
+
+        istart += startfix
+        iend += endfix
+#        print jpg_file_name_pattern + ":page"+str(njpg+1)
+        jpg = pdf[istart:iend]
+        jpg_file_name = jpg_file_name_pattern+("0"+str(njpg+1))[-2:]+".jpg"
+        jpgfile = file(jpg_file_name, "wb")
+        jpgfile.write(jpg)
+        jpgfile.close()
+
+        njpg += 1
+        i = iend
+
+def check_if_path_exist(image_path):
+    if os.path.exists(image_path):
+        pass
+    else:
+        os.mkdir(image_path)
+
+# Make the desticnation folders
+
+reports_segs = ["BM", "CN", "HQ", "PM"]
+reports_years = [2018]
+
+for seg in reports_segs:
+    seg_path = destination_root_path+r"\WRKG_FILS\GPJS\%s" % (seg)
+    check_if_path_exist(seg_path)
+
+    for year in reports_years:
+        year_path = seg_path+r"\%s" % (str(year))
+        check_if_path_exist(year_path)
+
+dir_lists = []
+for root, dirs, files in os.walk(source_root_path+"\RONA COMP\Competitors 2018", topdown=False):
+    dir_lists.append(dirs)
+    
+dir_lists = dir_lists[-1]
+
+print(dir_lists)
+
+# Source files location
+nn = 0
+
+for current_wk in dir_lists:
+    current_root = source_root_path+"\RONA COMP\Competitors 2018"+"\\"+current_wk
+    print(current_root)
+    
+    for _, _, files in os.walk(current_root, topdown=True):
+        for name in files:
+            full_path = os.path.join(current_root, name)
+            src = construct_filenames(full_path,working_yr,current_wk)[0]
+            jpg_file_name_pattern = construct_filenames(full_path,working_yr,current_wk)[1]
+            split_pdf_jpg(src,jpg_file_name_pattern)
+            nn = len(files)+nn
+
+print("Total files: %d" %nn)  
