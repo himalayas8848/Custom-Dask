@@ -1,0 +1,3 @@
+1. From Git configuration master branch, Disconnect first.
+2. Go to Author, create Trigger in the pipeline.
+3. In Monitor, at Alerts & metrics tab, Edit EmailNotification_Success_Failure adds the Target criteria Actions' Dimension Name.
