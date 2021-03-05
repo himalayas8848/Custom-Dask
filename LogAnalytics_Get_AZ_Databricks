@@ -1,0 +1,27 @@
+Perform the below steps on VM
+Also copy the scripts and jar via Azure storage Explorer on to VM
+
+Step 0:
+Make changes to spark-monitoring.sh by adding Log Analytics workspace ID and Key
+Raise a ticket with support to get the Log Analytics Key
+
+Step 1: Connect to Databricks
+Open command prompt
+
+databricks configure --token 
+Enter Hostname: Databricks URL
+Token: Paste the Token from Databricks
+
+Step 2: Create the directory in Databricks
+databricks fs mkdirs dbfs:/databricks/monitoring/
+
+Step 3: Copy the below JAR and Shell Scripts on to the directory
+databricks fs cp %USERPROFILE%\Desktop\SparkLogging\MBC\spark-monitoring.sh dbfs:/databricks/monitoring/spark-monitoring.sh
+databricks fs cp %USERPROFILE%\Desktop\SparkLogging\MBC\spark-listeners_3.0.1_2.12-1.0.0.jar dbfs:/databricks/monitoring/spark-listeners_3.0.1_2.12-1.0.0.jar
+databricks fs cp %USERPROFILE%\Desktop\SparkLogging\MBC\spark-listeners-loganalytics_3.0.1_2.12-1.0.0.jar dbfs:/databricks/monitoring/spark-listeners-loganalytics_3.0.1_2.12-1.0.0.jar
+
+Final Step:
+Add the below path to init script option on the cluster in databricks (Note: Only compatible with 3.0.1 Spark Version)
+dbfs:/databricks/monitoring/spark-monitoring.sh
+
+
