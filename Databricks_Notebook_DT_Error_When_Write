@@ -1,0 +1,4 @@
+# Change for Datetime Format
+spark.conf.set("spark.sql.legacy.parquet.datetimeRebaseModeInWrite", "CORRECTED")
+
+
